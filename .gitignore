@@ -1,0 +1,35 @@
+# ===========================
+# BACKEND
+# ===========================
+
+# Dipendenze PHP
+backend/vendor/
+
+# File ambiente (contiene credenziali DB!)
+backend/.env
+
+# Log
+backend/logs/
+
+# Cache
+backend/cache/
+
+# ===========================
+# FRONTEND
+# ===========================
+
+# Dipendenze Node
+frontend/node_modules/
+
+# Build di produzione
+frontend/dist/
+
+# Cache Vite
+frontend/.vite/
+
+# ===========================
+# SISTEMA
+# ===========================
+.DS_Store
+Thumbs.db
+*.log
