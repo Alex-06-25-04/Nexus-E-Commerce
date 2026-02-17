@@ -1,4 +1,4 @@
-// import AuthPage from '../pages/AuthPage.js';
+import AuthPage from '../pages/AuthPage.js';
 import HomePage from '../pages/HomePage.js';
 import ProductDetailPage from '../pages/ProductDetailPage.js';
 import FavoritePage from '../pages/FavoritePage.js';
@@ -8,7 +8,7 @@ const routes = {
     '/': HomePage,
     '/favorites': FavoritePage,
     '/cart': CartPage,
-    // '/auth': AuthPage
+    '/auth': AuthPage
 };
 
 export default class Router {

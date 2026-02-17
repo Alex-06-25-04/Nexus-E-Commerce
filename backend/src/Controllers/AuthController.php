@@ -39,7 +39,7 @@ class AuthController
 
             Response::json([
                 'success' => false,
-                'message' => 'Internal Server Error'
+                'message' => $e->getMessage()
             ], 500);
         }
     }
@@ -59,7 +59,7 @@ class AuthController
             Response::json([
                 'success' => true,
                 'message' => 'Login avvenuto con successo',
-                'data' => $result['user']
+                'data' => $result
             ], 200);
 
         } catch (\Exception $e) {
@@ -70,7 +70,7 @@ class AuthController
 
             Response::json([
                 'success' => false,
-                'message' => 'Internal Server Error'
+                'message' => $e->getMessage()
             ], 500);
         }
     }
@@ -82,7 +82,7 @@ class AuthController
                 Response::json([
                     'success' => true,
                     'isLoggedIn' => true,
-                    'user-data' => Session::get('user')
+                    'user_data' => Session::get('user')
                 ], 200);
             } else {
                 Response::json([

@@ -6,17 +6,21 @@ export default class AuthApi {
     }
 
     async register(data) {
-        return await this.fetchApi.fetch('auth/register', {
+        const response = await this.fetchApi.fetch('auth/register', {
             method: 'POST',
             body: data
         });
+
+        return response.data;
     }
 
     async login(data) {
-        return await this.fetchApi.fetch('auth/login', {
+        const response = await this.fetchApi.fetch('auth/login', {
             method: 'POST',
             body: data
         });
+
+        return response.data;
     }
 
     async checkStatus() {

@@ -33,7 +33,7 @@ export default class HomePage extends BasePage {
     async loadItems() {
         const items = await this.load.loadItems();
 
-        this.username = items?.auth.user_data?.username;
+        this.username = items?.auth?.user_data?.username;
         this.isLoggedIn = items?.auth?.isLoggedIn;
         this.categories = [{ id: 'All', name: 'All' }, ...items.categories]; // Aggiungo id: All e name: All così non dà errori visto che nel DB non è presente 
         this.products = items.products;

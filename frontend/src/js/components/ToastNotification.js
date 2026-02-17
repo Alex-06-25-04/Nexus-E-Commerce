@@ -9,7 +9,7 @@ export default class ToastNotification {
 
         const icon = type === 'success' ? '✓' : type === 'danger' ? '✗' : 'ⓘ';
 
-        icon.innerHTML = `
+        toast.innerHTML = `
            <strong>${icon}</strong> ${message}
            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         `;
