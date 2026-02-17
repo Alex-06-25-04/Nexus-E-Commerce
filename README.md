@@ -1,4 +1,4 @@
-# 🛒 PRISMA E-Commerce
+# 🛒 Nexus E-Commerce
 
 Full stack e-commerce application built with **PHP (MVC)** backend and **Vanilla JavaScript (SPA)** frontend.
 
