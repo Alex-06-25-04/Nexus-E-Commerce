@@ -38,8 +38,8 @@ Full stack e-commerce application built with **PHP (MVC)** backend and **Vanilla
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/e-commerce.git
-cd e-commerce
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+cd YOUR_REPO
 ```
 
 ### 2. Backend setup
@@ -72,6 +72,16 @@ mysql -u root -p e_commerce < docs/schema.sql
 ```bash
 cd frontend
 npm install
+cp .env.example .env
+```
+
+Edit `.env` with your backend URL:
+
+```env
+VITE_API_URL=http://localhost/YOUR_PATH/backend/public/api
+```
+
+```bash
 npm run dev
 ```
 
