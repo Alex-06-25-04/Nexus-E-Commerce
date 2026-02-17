@@ -1,6 +1,6 @@
 import LoadingSpinner from '../components/LoadingSpinner.js';
 
-const API = 'http://localhost/corso/PRISMA_PROJECT/E-Commerce/backend/public/api';
+const API = import.meta.env.VITE_API_URL;
 
 export default class FetchApi {
     constructor() {

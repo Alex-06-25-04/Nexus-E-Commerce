@@ -18,6 +18,9 @@ backend/cache/
 # FRONTEND
 # ===========================
 
+# File ambiente
+frontend/.env
+
 # Dipendenze Node
 frontend/node_modules/
 
