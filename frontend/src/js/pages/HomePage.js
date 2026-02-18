@@ -161,28 +161,22 @@ export default class HomePage extends BasePage {
                 try {
                     // Il backend gestisce automaticamente se esiste già!
                     await cartApi.insertCartItem(productId, 1);
-                    console.log('✅ Prodotto aggiunto/incrementato');
 
                     // Aggiorna lo stato locale
                     if (this.cartItems.has(productId)) {
                         const currentQty = this.cartItems.get(productId);
                         this.cartItems.set(productId, currentQty + 1);
-                        console.log('🟢 Qty incrementata a:', currentQty + 1);
                     } else {
                         this.cartItems.set(productId, 1);
-                        console.log('🟢 Nuovo prodotto, qty: 1');
                     }
 
-                    console.log('🔵 Badge update, cartItems.size:', this.cartItems.size);
                     this.updateBadgeHeader();
 
                 } catch (e) {
-                    console.error('❌ Errore aggiunta carrello:', e);
-                    // Potresti mostrare un toast error
+                    console.error('Errore aggiunta carrello:', e);
+                    ToastNotification.error('Impossibile aggiungerlo al carrello!')
                 }
             }
-
-            // Stessa logica backend se già nel carrello incrementa di 1 sennò inserisci, tramite api
         });
         this.elements.main.innerHTML = this.productListComponent.renderList();
     }

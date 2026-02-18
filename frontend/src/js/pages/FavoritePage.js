@@ -5,6 +5,7 @@ import ProductList from '../components/ProductList.js';
 import FavoriteApi from '../api/FavoriteApi.js';
 import { attachCardNavigation } from '../utils/attachCardNavigation.js';
 import CartApi from '../api/CartApi.js';
+import ToastNotification from '../components/ToastNotification.js';
 
 export default class FavoritePage extends BasePage {
     constructor(router) {
@@ -81,23 +82,18 @@ export default class FavoritePage extends BasePage {
                 try {
                     // Il backend gestisce automaticamente se esiste già!
                     await cartApi.insertCartItem(productId, 1);
-                    console.log('✅ Prodotto aggiunto/incrementato');
 
                     // Aggiorna lo stato locale
                     if (this.cartItems.has(productId)) {
                         const currentQty = this.cartItems.get(productId);
                         this.cartItems.set(productId, currentQty + 1);
-                        console.log('🟢 Qty incrementata a:', currentQty + 1);
                     } else {
                         this.cartItems.set(productId, 1);
-                        console.log('🟢 Nuovo prodotto, qty: 1');
                     }
 
-                    console.log('🔵 Badge update, cartItems.size:', this.cartItems.size);
-
                 } catch (e) {
-                    console.error('❌ Errore aggiunta carrello:', e);
-                    // Potresti mostrare un toast error
+                    console.error('Errore aggiunta carrello:', e);
+                    ToastNotification.error('Impossibile aggiungerlo al carrello!')
                 }
             }
         });

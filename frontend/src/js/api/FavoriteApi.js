@@ -10,7 +10,7 @@ export default class FavoriteApi {
             method: 'POST',
             body: { product: productId }
         });
-        console.log('Toggle response:', response);
+
         return response.data.is_favorite;
     }
 

@@ -107,17 +107,11 @@ export default class ProductList {
             const deleteBtn = e.target.closest('.delete-fav');
             if (deleteBtn) {
                 e.stopPropagation();
-                console.log('🔴 DELETE CLICKED!'); // Debug
 
                 const card = deleteBtn.closest('.product-card');
                 const productId = Number(card.dataset.productId);
 
-                console.log('🔴 Product ID:', productId); // Debug
-
-                if (!productId) {
-                    console.log('❌ Product ID non trovato!');
-                    return;
-                }
+                if (!productId) return;
 
                 // Nascondi il dropdown prima di eliminare
                 const dropdown = deleteBtn.closest('.dropdown-menu');
@@ -126,9 +120,7 @@ export default class ProductList {
                 try {
                     // Chiama il callback per eliminare dal backend
                     if (this.onDeleteFav) {
-                        console.log('🔴 Chiamata API eliminazione...'); // Debug
                         await this.onDeleteFav(productId);
-                        console.log('✅ Eliminazione completata'); // Debug
                     }
 
                     // Filtra il prodotto dall'array
@@ -143,7 +135,7 @@ export default class ProductList {
                         await this.attachEvents();
                     }
                 } catch (error) {
-                    console.error('❌ Errore eliminazione:', error);
+                    console.error('Errore eliminazione:', error);
                 }
                 return;
             }
@@ -235,11 +227,9 @@ export default class ProductList {
             if (menuTrigger) {
                 e.stopPropagation();
 
-                // ✅ Il dropdown è ora sibling del button, non child
+                // Il dropdown è ora sibling del button, non child
                 const menuContainer = menuTrigger.parentElement;
                 const dropdownMenu = menuContainer.querySelector('.dropdown-menu');
-
-                console.log('🟡 Menu trigger clicked, dropdown:', dropdownMenu);
 
                 this.#toggleDropdown(dropdownMenu);
 
