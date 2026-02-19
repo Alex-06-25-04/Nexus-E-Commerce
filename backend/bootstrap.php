@@ -2,8 +2,11 @@
 use Dotenv\Dotenv;
 use App\Core\Session;
 
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+// Carica .env solo se esiste (in locale), su Railway le variabili sono già nel sistema
+if (file_exists(__DIR__ . '/.env')) {
+    $dotenv = Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+}
 
 Session::start();
 
@@ -11,7 +14,19 @@ Session::start();
 header('Content-Type: application/json; charset=utf-8');
 
 // CORS per frontend SPA
-header('Access-Control-Allow-Origin: http://localhost:5173');
+$allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    getenv('FRONTEND_URL') ?: ''
+];
+
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowedOrigins)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+} else {
+    header('Access-Control-Allow-Origin: *');
+}
+
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Access-Control-Allow-Credentials: true');
@@ -23,4 +38,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Timezone
-date_default_timezone_set($_ENV['APP_TIMEZONE']);
+date_default_timezone_set(getenv('APP_TIMEZONE') ?: 'Europe/Rome');
